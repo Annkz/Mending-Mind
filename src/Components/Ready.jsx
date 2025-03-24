@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import WebPageCard from "../assets/Web Page Card.jpg";
+import { motion, useInView } from "framer-motion";
 
 const StepsSection = () => {
   return (
@@ -33,40 +34,55 @@ const StepsSection = () => {
               "FILL OUT THE DETAILS",
               "PAY AND CONFIRM YOUR SESSION",
               "RECEIVE A CUSTOMISED WELLNESS BOX",
-            ].map((text, index) => (
-              <div key={index} className="flex items-center gap-4 relative">
-                {/* Vertical Line */}
-                {index < 3 && (
-                  <div className="absolute left-5 top-10 w-0.5 h-8 bg-black"></div>
-                )}
-                {/* Number */}
-                <div className="w-10 h-10 flex items-center justify-center bg-black text-white italic rounded-full text-lg font-bold">
-                  0 {index + 1}
-                </div>
-                {/* Text */}
-                <p className="text-gray-900 text-sm font-bold flex items-center gap-2">
-                  {text.includes("WELLNESS BOX") ? (
-                    <>
-                      RECEIVE A CUSTOMISED
-                      <span className="bg-teal-600  px-2 py-1 rounded-md">
-                        WELLNESS BOX
-                      </span>
-                    </>
-                  ) : (
-                    text
+            ].map((text, index) => {
+              const ref = useRef(null);
+              const isInView = useInView(ref, {
+                once: false,
+                margin: "-100px",
+              });
+
+              return (
+                <div key={index} className="flex items-center gap-4 relative">
+                  {/* Vertical Line */}
+                  {index < 3 && (
+                    <div className="absolute left-5 top-10 w-0.5 h-8 bg-black"></div>
                   )}
-                </p>
-              </div>
-            ))}
+                  {/* Number with Scroll Animation */}
+                  <motion.div
+                    ref={ref}
+                    className="w-10 h-10 flex items-center justify-center bg-black text-white italic rounded-full text-lg font-bold"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={
+                      isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                    }
+                    transition={{ duration: 0.5, delay: index * 0.2 }}
+                  >
+                    0 {index + 1}
+                  </motion.div>
+                  {/* Text */}
+                  <p className="text-gray-900 text-sm font-bold flex items-center gap-2">
+                    {text.includes("WELLNESS BOX") ? (
+                      <>
+                        RECEIVE A CUSTOMISED
+                        <span className="bg-teal-600 px-2 py-1 rounded-md">
+                          WELLNESS BOX
+                        </span>
+                      </>
+                    ) : (
+                      text
+                    )}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
-      <div>
-        {/* Button */}
-        <button className="mt-12 mb-[-25px] bg-yellow-500 text-black font-bold py-3 px-6 rounded-lg hover:bg-yellow-600 transition cursor-pointer">
-          GET STARTED &gt;
-        </button>
-      </div>
+
+      {/* Button */}
+      <button className="mt-12 mb-[-25px] bg-yellow-500 text-black font-bold py-3 px-6 rounded-lg hover:bg-yellow-600 transition cursor-pointer">
+        GET STARTED &gt;
+      </button>
     </div>
   );
 };
