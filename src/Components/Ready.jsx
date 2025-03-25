@@ -38,7 +38,8 @@ const StepsSection = () => {
               const ref = useRef(null);
               const isInView = useInView(ref, {
                 once: false,
-                margin: "-100px",
+                margin: "0px 0px -30% 0px", // Adjusted margin for better mobile detection
+                threshold: 0.1, // Ensures even a small part triggers animation
               });
 
               return (

@@ -5,8 +5,17 @@ import gif2 from '../assets/gif2.gif';
 const Anxiety = () => {
   return (
     <div className="flex flex-col items-center justify-center">
-      <img src={gif1} alt="Anxiety GIF 1" className="w-full mb-20 h-[80vh] object-cover" />
-      <img src={gif2} alt="Anxiety GIF 2" className="w-full mb-20 h-[20vh] object-cover" />
+      <img
+        src={gif1}
+        alt="Anxiety GIF 1"
+        className="mb-20 object-contain max-w-full h-auto"
+      />
+
+      <img
+        src={gif2}
+        alt="Anxiety GIF 2"
+        className="w-full mb-20 h-[20vh] object-cover"
+      />
     </div>
   );
 }

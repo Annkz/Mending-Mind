@@ -1,7 +1,8 @@
 import React from "react";
 import care1 from "../assets/care1.png";
-import CareImage from "../assets/threeImage.jpg"
-
+import CareImage1 from "../assets/Untitled-1.png";
+import CareImage2 from "../assets/Untitled-2.png";
+import CareImage3 from "../assets/Untitled-3.png";
 
 const Care = () => {
   return (
@@ -15,7 +16,24 @@ const Care = () => {
         </div>
       </div>
 
-      <img src={CareImage} alt="" />
+      {/* Image Section */}
+      <div className="flex w-full gap-4 justify-center items-center px-6 pb-6">
+        <img
+          src={CareImage1}
+          alt=""
+          className="w-1/4 h-auto object-cover rounded-md shadow-md p-2"
+        />
+        <img
+          src={CareImage2}
+          alt=""
+          className="w-1/4 h-auto object-cover rounded-md shadow-md p-2"
+        />
+        <img
+          src={CareImage3}
+          alt=""
+          className="w-1/4 h-auto object-cover rounded-md shadow-md p-2"
+        />
+      </div>
     </div>
   );
 };
